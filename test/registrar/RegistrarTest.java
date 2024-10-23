@@ -74,6 +74,30 @@ class RegistrarTest {
         assertFalse(comp127.getRoster().contains(sally));
     }
 
+
+    @Test
+    void clientsCannotModifyCourses() {
+        assertThrows(UnsupportedOperationException.class, () -> {
+            sally.getCourses().add(comp127);
+         });
+    }
+    
+    @Test
+    void clientsCannotModifyRoster() {
+        assertThrows(UnsupportedOperationException.class, () -> {
+            comp127.getRoster().add(sally);
+        });
+    }
+
+    @Test
+    void studentCannotEnrollMoreThanOnce() {
+        for (int n = 0; n < 16; n++) {
+            sally.enrollIn(comp127);
+        } 
+        assertFalse(sally.enrollIn(comp127)); 
+        assertTrue(comp127.getRoster().contains(sally));      
+    }
+
     // ------ Post-test invariant check ------
     //
     // This is a bit persnickety for day-to-day testing, but these kinds of checks are appropriate
