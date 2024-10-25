@@ -98,6 +98,16 @@ class RegistrarTest {
         assertTrue(comp127.getRoster().contains(sally));      
     }
 
+
+    @Test
+    void courseCannotBEEnrolledMoreThanOnce() {
+        for (int n = 0; n < 16; n++) {
+            sally.enrollIn(comp127);
+        } 
+        assertTrue(sally.getCourses().contains(comp127));
+        assertFalse(comp127.enroll(sally));     
+    }
+
     // ------ Post-test invariant check ------
     //
     // This is a bit persnickety for day-to-day testing, but these kinds of checks are appropriate

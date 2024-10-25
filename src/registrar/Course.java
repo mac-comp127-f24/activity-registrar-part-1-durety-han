@@ -71,11 +71,11 @@ public class Course {
         if (isFull()) {
             return false;
         }
-        if (roster.contains(student)) {
+        else if (roster.contains(student)) {
             return false;
         }
-        roster.add(student);
-        return true;
+        else {roster.add(student);
+        return true;}
     }
 
     /**
